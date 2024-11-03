@@ -1,0 +1,50 @@
+<template>
+  <CheckboxWithLabel
+    :dusk="`${option.value}-checkbox`"
+    :checked="isChecked"
+    @input="updateCheckedState(option.value, $event.target.checked)"
+  >
+    <span>{{ labelFor(option) }}</span>
+  </CheckboxWithLabel>
+</template>
+
+<script>
+export default {
+  emits: ['change'],
+
+  props: {
+    resourceName: {
+      type: String,
+      required: true,
+    },
+    filter: Object,
+    option: Object,
+    label: { default: 'name' },
+  },
+
+  methods: {
+    labelFor(option) {
+      return option[this.label] || ''
+    },
+
+    updateCheckedState(optionKey, checked) {
+      let oldValue = this.filter.currentValue
+      let newValue = { ...oldValue, [optionKey]: checked }
+
+      this.$store.commit(`${this.resourceName}/updateFilterState`, {
+        filterClass: this.filter.class,
+        value: newValue,
+      })
+
+      this.$emit('change')
+    },
+  },
+
+  computed: {
+    isChecked() {
+        return true
+
+    },
+  },
+}
+</script>
