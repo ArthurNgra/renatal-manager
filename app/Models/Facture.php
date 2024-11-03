@@ -14,7 +14,6 @@ class Facture extends Model
 
     protected $keyType = 'string';
 
-    public $incrementing = false;
     public function devis(): BelongsTo
     {
         return $this->belongsTo(Devis::class);
