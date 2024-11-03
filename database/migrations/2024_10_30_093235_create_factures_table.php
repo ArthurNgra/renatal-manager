@@ -9,7 +9,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('factures', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignId('devis_id')->constrained('devis');
             $table->string('status');
             $table->date('due_date');

@@ -30,7 +30,7 @@ class Facture extends Model
             if(Devis::find($model->devis_id)->status!='valider'){
                 throw new Error('Le devis n est pas valider par le client');
             }
-            $model->id = substr((string) Str::orderedUuid(), 0, 10); // 10 caractères
+
             $model->status = 'Ouverte';
 
             $model->client_id=Devis::find($model->devis_id)->rental->client->id;

@@ -42,7 +42,7 @@ class DevisConfirmationMail extends Mailable
         $this->url = $baseUrl . '/devis/' . $devis->id . '/acceptation';
         $this->token = $token;
         $this->filePath = $filePath;
-
+        dd($baseUrl);
     }
 
     /**
