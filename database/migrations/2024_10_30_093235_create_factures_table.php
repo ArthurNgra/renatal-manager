@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('status');
             $table->date('due_date');
             $table->foreignIdFor(ClientModel::class, 'client_id');
-            $table->timestamps();
+
         });
     }
 
