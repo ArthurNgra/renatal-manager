@@ -6,6 +6,7 @@ use App\Models\Facture;
 use App\Nova\Metrics\FacturesOuvertes;
 use App\Nova\Metrics\Reduction;
 use App\Nova\Metrics\Revenus;
+use App\Services\ChartService;
 use Archi\FactureOuverte\FactureOuverte;
 use Coroowicaksono\ChartJsIntegration\BarChart;
 use Coroowicaksono\ChartJsIntegration\StackedChart;
@@ -28,10 +29,9 @@ class Main extends Dashboard
         $totalsWithoutReduction = Facture::getMonthlyTotalWithoutReduction();
         $totalsWithReduction = Facture::getMonthlyTotalWithReduction();
 
-        // Extraire les catégories (les mois)
+
         $categories = array_keys($totalsWithoutReduction);
 
-        // Extraire les données des totaux
         $dataWithoutReduction = array_values($totalsWithoutReduction);
         $dataWithReduction = array_values($totalsWithReduction);
         return [
@@ -61,8 +61,9 @@ class Main extends Dashboard
                         'categories' => $categories, // Les mois
                     ],
 
-                ])
-            ->height(1/2),
+                ]),
+
+                ChartService::pieChartMostRentedMaterials()
 
         ];
     }

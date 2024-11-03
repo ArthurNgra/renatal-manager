@@ -26,26 +26,24 @@ class Company extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make()->sortable(),
-
             Text::make('Nom', 'name'),
             Text::make('Adresse')
                 ->sortable()
                 ->rules('required'),
 
-            Text::make('Town')
+            Text::make('Ville','town')
                 ->sortable()
                 ->rules('required'),
 
-            Text::make('Country')
+            Text::make('Pays','country')
                 ->sortable()
                 ->rules('required'),
 
-            Text::make('Phone')
+            Text::make('Tel','phone')
                 ->sortable()
                 ->rules('required'),
 
-            Text::make('Mail')
+            Text::make('@','mail')
                 ->sortable()
                 ->rules('required'),
 

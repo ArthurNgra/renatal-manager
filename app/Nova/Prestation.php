@@ -22,15 +22,15 @@ class Prestation extends Resource
     {
         return [
 
-            Text::make('Name')
+            Text::make('Nom','name')
                 ->sortable()
                 ->rules('required'),
 
-            Text::make('Description')
+            Text::make('Description','description')
                 ->sortable()
                 ->rules('required'),
 
-            Number::make('Price')
+            Number::make('Prix','price')
                 ->sortable()
                 ->rules('required', 'numeric'),
         ];

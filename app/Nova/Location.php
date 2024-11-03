@@ -41,23 +41,23 @@ class Location extends Resource
 
         return [
 
-            Text::make('Referal Phone')
+            Text::make('Tel contact','referal_phone')
                 ->sortable()
                 ->rules('nullable'),
 
-            Text::make('Address')
+            Text::make('Adresse','address')
                 ->sortable()
                 ->rules('required'),
 
-            Date::make('From')
+            Date::make('Du','from')
                 ->sortable()
                 ->rules('required', 'date'),
 
-            Date::make('To')
+            Date::make('Au','to')
                 ->sortable()
                 ->rules('required', 'date'),
 
-            Text::make('Special Demands')
+            Text::make('Demandes spéciales','special_demands')
                 ->sortable()
                 ->rules('nullable'),
 

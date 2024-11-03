@@ -14,14 +14,12 @@ class Category extends Resource
     public static $title = 'name';
 
     public static $search = [
-        'id', 'name'
+         'name'
     ];
 
     public function fields(Request $request): array
     {
         return [
-            ID::make()->sortable(),
-
             Text::make('Name')
                 ->sortable()
                 ->rules('required'),

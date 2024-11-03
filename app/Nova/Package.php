@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Models\Package;
+use App\Models\Package as PackageModel;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -10,9 +10,9 @@ use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 
-class PackageResource extends Resource
+class Package extends Resource
 {
-    public static $model = Package::class;
+    public static $model = PackageModel::class;
 
     public static $title = 'name';
 
@@ -23,14 +23,12 @@ class PackageResource extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make()->sortable(),
-
-            Text::make('Name')
+            Text::make('Nom','name')
                 ->sortable()
                 ->rules('required'),
-            BelongsToMany::make('materiel', 'packageItems', PackageItemResource::class),
+            BelongsToMany::make('materiel', 'packageItems', ElementDePackage::class),
 
-            BelongsTo::make('Reduction','reduction',Reductions::class)
+            BelongsTo::make('Réduction','reduction',Reductions::class)
         ];
     }
 

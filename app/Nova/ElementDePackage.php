@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 
-class PackageItemResource extends Resource
+class ElementDePackage extends Resource
 {
     public static $model = PackageItem::class;
 
@@ -27,20 +27,18 @@ class PackageItemResource extends Resource
             return [$item => $item];
         });
         return [
-            ID::make()->sortable(),
-
-            Select::make('name')
+            Select::make('nom','name')
 //                ->options($modelNames)
                 ->options($modelNames)
 
                 ->sortable()
                 ->rules('required'),
 
-            Number::make('Quantity')
+            Number::make('Quantité','quantity')
                 ->sortable()
                 ->rules('required', 'integer'),
 
-            BelongsToMany::make('Pack', 'packages', PackageResource::class),
+            BelongsToMany::make('Pack', 'packages', Package::class),
         ];
     }
 

@@ -14,8 +14,8 @@ use App\Nova\Devis;
 use App\Nova\Facture;
 use App\Nova\Location;
 use App\Nova\Materiel;
-use App\Nova\PackageItemResource;
-use App\Nova\PackageResource;
+use App\Nova\ElementDePackage;
+use App\Nova\Package;
 use App\Nova\Prestation;
 use App\Nova\Reductions;
 use App\Nova\Utilisateur;
@@ -52,8 +52,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(Location::class)->name('Locations'),
                     MenuItem::resource(Materiel::class)->name('Materiel'),
                     MenuItem::resource(Prestation::class)->name('Prestations'),
-                    MenuItem::resource(PackageResource::class)->name('Packages'),
-                    MenuItem::resource(PackageItemResource::class)->name('PackageItems'),
+                    MenuItem::resource(Package::class)->name('Packages'),
+                    MenuItem::resource(ElementDePackage::class)->name('Elements de package'),
                     ])->collapsable(),
                 MenuSection::make('Devis et factures', [
                     MenuItem::resource(Devis::class)->name('Devis'),

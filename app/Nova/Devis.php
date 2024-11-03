@@ -41,10 +41,10 @@ class Devis extends Resource
                 ->loadingWhen(['en cours', 'creer'])
                 ->failedWhen(['refuser']),
 
-            BelongsTo::make('Rental', 'rental', Location::class),
+            BelongsTo::make('Location', 'rental', Location::class),
             BelongsToMany::make('Prestation', 'prestations', Prestation::class),
             BelongsToMany::make('Reductions', 'reductions', Reductions::class),
-            HasMany::make('facture', 'factures', Facture::class),
+            HasMany::make('Facture', 'factures', Facture::class),
             BelongsToMany::make('Materiels', 'materialsForNova', Materiel::class),
             File::make('PDF','downloadurl')->disk('local')->displayUsing(function () {
                 return 'Télécharger le fichier';

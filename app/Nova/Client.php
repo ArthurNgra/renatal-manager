@@ -29,8 +29,6 @@ class Client extends Resource
     public function fields(Request $request): array
     {
         return [
-
-
             Text::make('Entreprise','society')
                 ->placeholder('Entreprise')
                 ->sortable()
@@ -51,7 +49,7 @@ class Client extends Resource
                 ->sortable()
                 ->rules('required'),
 
-            Text::make('Email','mail')
+            Text::make('@','mail')
                 ->sortable()
                 ->rules('required','email'),
 

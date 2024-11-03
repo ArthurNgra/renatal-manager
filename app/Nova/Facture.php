@@ -28,16 +28,14 @@ class Facture extends Resource
     {
 
         return [
-            ID::make()->sortable(),
-
-
             Select::make('Status')->options([
                 'Ouverte' => 'Ouverte',
                 'Payé' => 'Payé',
                 'Retard' => 'Retard',
                 'Impayé' => 'Impayé'
             ])
-                ->hideWhenCreating()
+
+                ->onlyOnForms()
                 ->required(),
 
             Status::make('status')
@@ -46,7 +44,7 @@ class Facture extends Resource
                     'Impayé'])
                 ->sortable(),
 
-            Date::make('Due Date')
+            Date::make('Date de règlement','due_date')
                 ->sortable()
                 ->rules('required', 'date'),
 
