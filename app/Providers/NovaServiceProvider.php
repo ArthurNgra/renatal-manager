@@ -48,22 +48,22 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(Client::class)->name('Clients'),
                 ])->icon('user')->collapsable(),
 
-                MenuSection::make('Locations & materiel', [
-                    MenuItem::resource(Location::class)->name('Locations'),
+                MenuSection::make('Materiels', [
                     MenuItem::resource(Materiel::class)->name('Materiel'),
                     MenuItem::resource(Prestation::class)->name('Prestations'),
                     MenuItem::resource(Package::class)->name('Packages'),
                     MenuItem::resource(ElementDePackage::class)->name('Elements de package'),
-                    ])->collapsable(),
-                MenuSection::make('Devis et factures', [
+                    ]),
+                MenuSection::make('Locations', [
+                    MenuItem::resource(Location::class)->name('Locations'),
                     MenuItem::resource(Devis::class)->name('Devis'),
                     MenuItem::resource(Reductions::class)->name('Reductions'),
                 MenuItem::resource(Facture::class)->name('Factures')
-                ])->icon('scale')->collapsable(),
+                ])->icon('scale'),
 
                 MenuSection::make(' Utilisateurs', [
                     MenuItem::resource(Utilisateur::class)->name('Utilisateur'),
-                    MenuItem::resource(Company::class)->name('Societe'),
+                    MenuItem::resource(Company::class)->name('Societé'),
                 ])->icon('user')->collapsable(),
 
             ];

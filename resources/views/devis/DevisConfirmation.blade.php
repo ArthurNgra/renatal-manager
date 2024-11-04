@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Carbon; @endphp
+    <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -12,14 +13,16 @@
         }
 
         .header, .footer {
-            text-align: center;
+
             padding: 10px;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+
         }
 
         .content {
             margin: 20px;
+
         }
 
         .company-info, .client-info {
@@ -48,38 +51,133 @@
         .total-row td {
             font-weight: bold;
         }
+
+        .info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .info-item-list {
+            display: flex;
+            margin-right: 3rem;
+            justify-content: flex-end;
+
+        }
+
+        .info-item-list-left {
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .info-item {
+            padding-bottom: 0; /* Remove padding */
+            margin-bottom: 0; /* Remove margin */
+        }
+
+        .logo {
+            text-align: left;
+            padding-right: 20px;
+            padding-bottom: 20px;
+        }
+
+        .info-table {
+            width: auto; /* Table width adapts to content */
+            border-collapse: collapse;
+            table-layout: auto; /* Allows column widths to adjust based on content */
+            max-width: 30%;
+            border: none;
+            margin-left: 3rem;
+        }
+
+        .info-table td {
+            padding: 2px 5px; /* Minimal padding for compact layout */
+            vertical-align: top;
+            border: none;
+            white-space: nowrap;
+
+        }
     </style>
 </head>
 <body>
 <div class="header">
-    <h1>Devis de Confirmation</h1>
-    <p>{{ $company->name }} - {{ $company->email }}</p>
+    <div class="logo">
+        <img
+            src='https://backline.onebigcartel.com/storage/LogoOneBigCartel.jpg'
+            height="87"
+            width="auto" alt=""/>
+    </div>
+    <div class="info">
+        <div class="info-item-list-left">
+            <table class="info-table">
+                <tr>
+                    <td><strong>Date:</strong></td>
+                    <td>{{ Carbon::today()->toDateString() }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Société:</strong></td>
+                    <td><p>{{ $company->name }}</p></td>
+                </tr>
+                <tr>
+                    <td><strong>Adresse:</strong></td>
+                    <td>{{ $company->adresse }} {{$company->town}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Tel:</strong></td>
+                    <td>{{ $company->phone }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Tel:</strong></td>
+                    <td>{{ $company->phone }}</td>
+                </tr>
+                <tr>
+                    <td><strong>@:</strong></td>
+                    <td>{{ $company->mail }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Siret:</strong></td>
+                    <td>{{ $company->siret}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="info-item-list">
+            <table class="info-table">
+                <tr>
+                    <td><p><strong>Société:</strong></p></td>
+                    <td><p>{{ $client->$company }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Client:</strong></p></td>
+                    <td><p>{{ $client->firstname }} {{ $client->lastname }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Email:</strong></p></td>
+                    <td>
+                        <p>{{ $client->mail }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Téléphone:</strong></p></td>
+                    <td><p> {{ $client->phone }}</p></td>
+                </tr>
+                <tr>
+                    <td><p><strong>Adresse:</strong></p></td>
+                    <td><p> {{ $client->address }}</p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    {{--    <p>{{ $company->name }} - {{ $company->email }}</p>--}}
     <p>{{ $company->address }}</p>
 </div>
 
 <div class="content">
-    <div class="company-info">
-        <h2>Informations de l'entreprise</h2>
-        <p><strong>Entreprise:</strong> {{ $company->name }}</p>
-        <p><strong>Email:</strong> {{ $company->mail }}</p>
-        <p><strong>Adresse:</strong> {{ $company->address }} {{$company->town}} {{$company->country}}</p>
-    </div>
 
-    <div class="client-info">
-        <h2>Informations du client</h2>
-        <p><strong>Société:</strong> {{ $client->$company }}</p>
-        <p><strong>Client:</strong> {{ $client->firstname }} {{ $client->lastname }}</p>
-        <p><strong>Email:</strong> {{ $client->mail }}</p>
-        <p><strong>Téléphone:</strong> {{ $client->phone }}</p>
-        <p><strong>Adresse:</strong> {{ $client->address }}</p>
-    </div>
 
     <h2>Détails du devis</h2>
     <table>
-        <thead>
-        <tr>
+        <thead class="thead-dark">
+        <tr class="accent-green-200">
             <th>Description</th>
-            <th>Quantité</th>
             <th>Prix Unitaire</th>
             <th>Total</th>
         </tr>
@@ -93,8 +191,8 @@
                 <!-- Now, each $material is a single item from the collection -->
                 <td>1</td>
                 <td>{{$material->price}}</td>
-                {{--                <td>{{ number_format($material->price, 2, ',', ' ') }} €</td>--}}
-                {{--                <td>{{ number_format($material->price * $material->quantity, 2, ',', ' ') }} €</td>--}}
+                <td>{{ number_format($material->price, 2, ',', ' ') }} €</td>
+                <td>{{ number_format($material->price * $material->quantity, 2, ',', ' ') }} €</td>
             </tr>
         @endforeach
         @foreach($devis->prestations as  $prestation)
@@ -120,8 +218,8 @@
 
     <div class="location-info">
         <h2>Informations sur la location</h2>
-        <p><strong>Lieu:</strong> {{ $location->address }}</p>
-        <p><strong>Date:</strong> {{ $location->from}} - {{$location->to}}</p>
+        {{--        <p><strong>Lieu:</strong> {{ $location->address }}</p>--}}
+        {{--        <p><strong>Date:</strong> {{ $location->from}} - {{$location->to}}</p>--}}
     </div>
 </div>
 

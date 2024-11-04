@@ -15,4 +15,8 @@ Route::middleware(['nova.guest'])->group(function () {
     Route::get('/devis/{devisId}/acceptation', [DevisController::class,'changeStatus'])->name('transmettre.decision');
     Route::get('/devis/status')->name('devis.status');
     Route::get('/devis/not-available',function(){})->name('devis.not-available');
+    Route::get('devis',function(){
+        $img = resource_path('img/LogoOneBigCartel.jpg');
+        return view('devis.DevisConfirmation',compact('img'));
+    })->name('devis.index');
 });

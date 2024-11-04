@@ -50,7 +50,7 @@ class Company extends Resource
             Text::make('Siret')
                 ->sortable()
                 ->rules('required'),
-
+            Text::make('Rib','rib')->onlyOnDetail(),
             HasMany::make('Utilisateurs', 'users', 'App\Nova\Utilisateur')
         ];
     }
