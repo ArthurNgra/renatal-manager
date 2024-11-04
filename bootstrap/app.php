@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo(fn() => route(
-            name: 'nova.pages.login ',
+            name: 'nova.login ',
         ));
     })->withProviders()
     ->withExceptions(function (Exceptions $exceptions) {
