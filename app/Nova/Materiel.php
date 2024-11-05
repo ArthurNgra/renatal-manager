@@ -3,7 +3,7 @@
 namespace App\Nova;
 
 use App\Models\MaterialModel;
-use App\Nova\Filters\materielDisponible;
+use App\Nova\Filters\MaterielDisponible;
 use App\Nova\Filters\MaterialAvailDFrom;
 use App\Nova\Filters\MaterialAvailTo;
 use App\Nova\Filters\MaterielType;
@@ -66,7 +66,7 @@ class Materiel extends Resource
         return [
             MegaFilter::make([
             new MaterielType,
-            new materielDisponible()
+            new MaterielDisponible()
         ]),
         ];
     }

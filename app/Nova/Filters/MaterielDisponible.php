@@ -7,7 +7,7 @@ use Laravel\Nova\Filters\Filter;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 
-class materielDisponible extends Filter
+class MaterielDisponible extends Filter
 {
     /**
      * @var string
