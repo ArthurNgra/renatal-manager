@@ -6,6 +6,8 @@ use App\Models\MaterialModel;
 use App\Nova\Filters\MaterialAvailDFrom;
 use App\Nova\Filters\MaterialAvailTo;
 use App\Nova\Filters\MaterielType;
+use DigitalCreative\MegaFilter\MegaFilter;
+use DigitalCreative\MegaFilter\MegaFilterTrait;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -17,6 +19,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Materiel extends Resource
 {
+    use MegaFilterTrait;
     public static $model = MaterialModel::class;
 
     public function title()
@@ -58,7 +61,11 @@ class Materiel extends Resource
 
     public function filters(Request $request): array
     {
-        return [new MaterielType, new MaterialAvailDFrom(), new MaterialAvailTo()
+        return [  MegaFilter::make([
+            new MaterielType,
+            new MaterialAvailDFrom(),
+            new MaterialAvailTo(),
+        ]),
         ];
     }
 

@@ -2,19 +2,17 @@
 
 namespace App\Nova;
 
-use App\Models\MaterialModel;
 use App\Models\RentalModel;
 use App\Nova\Actions\Pack;
-use App\Nova\Filters\DateFiltreMaterial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use function Laravel\Prompts\confirm;
 
 class Location extends Resource
 {
@@ -41,23 +39,23 @@ class Location extends Resource
 
         return [
 
-            Text::make('Tel contact','referal_phone')
+            Text::make('Tel contact', 'referal_phone')
                 ->sortable()
                 ->rules('nullable'),
 
-            Text::make('Adresse','address')
+            Text::make('Adresse', 'address')
                 ->sortable()
                 ->rules('required'),
 
-            Date::make('Du','from')
+            Date::make('Du', 'from')
                 ->sortable()
                 ->rules('required', 'date'),
 
-            Date::make('Au','to')
+            Date::make('Au', 'to')
                 ->sortable()
                 ->rules('required', 'date'),
 
-            Text::make('Demandes spéciales','special_demands')
+            Text::make('Demandes spéciales', 'special_demands')
                 ->sortable()
                 ->rules('nullable'),
 
@@ -106,20 +104,27 @@ class Location extends Resource
         }
 
         // Define the start and end of the rental period
-        $from = Carbon::make($rental->from)->startOfDay();
-        $to = Carbon::make($rental->to)->endOfDay();
+        $from = Carbon::parse($rental->from);
+        $to = Carbon::parse($rental->to);
 
-        // Filter materials that are not rented within the specified period
-        return $query->whereDoesntHave('rentals', function ($q) use ($from, $to) {
-            $q->where(function ($q) use ($from, $to) {
-                $q->whereBetween('from', [$from, $to])
-                    ->orWhereBetween('to', [$from, $to])
-                    ->orWhere(function ($q2) use ($from, $to) {
-                        $q2->where('from', '<=', $from)
-                            ->where('to', '>=', $to);
-                    });
-            });
-        });
+        $q1 = DB::table("Materials")->select("*"); // Ajustez les colonnes si nécessaire
+
+
+        $q2 = DB::table("materials", "materials")
+            ->select("materials.id") // On sélectionne uniquement l'ID pour simplifier la sous-requête
+            ->join("material_rental", "materials.id", "=", "material_rental.material_id")
+            ->join("rentals", "material_rental.rental_id", "=", "rentals.id")
+
+            ->where("from", "<=", $from)
+            ->where("to", ">=",$to)
+            ->pluck("materials.id"); // Utilisez `pluck` pour obtenir une liste d'IDs seulement
+
+
+        $result = DB::table("Materials")
+            ->select("*")
+            ->whereNotIn("id", $q2) // Exclut les IDs de $q2
+            ->get();
+        return $result;
     }
 
 }

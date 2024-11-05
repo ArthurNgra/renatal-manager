@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29644837ebed4d7e6a7d08cf783940f9",
+    "content-hash": "2cc7e0d33556e4bc42f5680709cc3570",
     "packages": [
+        {
+            "name": "ampeco/nova-date-range-filter",
+            "version": "0.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ampeco/nova-date-range-filter.git",
+                "reference": "c1432a163c74e0c1b8d8850957bcfabbd5e0ee83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ampeco/nova-date-range-filter/zipball/c1432a163c74e0c1b8d8850957bcfabbd5e0ee83",
+                "reference": "c1432a163c74e0c1b8d8850957bcfabbd5e0ee83",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ampeco\\Filters\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ampeco\\Filters\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova date range filter.",
+            "keywords": [
+                "date",
+                "filter",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/ampeco/nova-date-range-filter/tree/0.1.3"
+            },
+            "time": "2021-09-28T07:55:11+00:00"
+        },
         {
             "name": "barryvdh/laravel-dompdf",
             "version": "v3.0.0",
@@ -407,6 +453,66 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
             "time": "2024-07-08T12:26:09+00:00"
+        },
+        {
+            "name": "digital-creative/nova-mega-filter",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcasia/nova-mega-filter.git",
+                "reference": "592ff7017634086e2de0ff1bb4ea98a365b3a707"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcasia/nova-mega-filter/zipball/592ff7017634086e2de0ff1bb4ea98a365b3a707",
+                "reference": "592ff7017634086e2de0ff1bb4ea98a365b3a707",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DigitalCreative\\MegaFilter\\MegaFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DigitalCreative\\MegaFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rafael Milewski"
+                }
+            ],
+            "description": "Allows you to control the columns and filters shown on your nova resources.",
+            "keywords": [
+                "big-filter",
+                "columns",
+                "filter",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/dcasia/nova-mega-filter/issues",
+                "source": "https://github.com/dcasia/nova-mega-filter/tree/v1.0.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/milewski",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-20T04:49:50+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -10964,12 +11070,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

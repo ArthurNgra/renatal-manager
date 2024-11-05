@@ -3,24 +3,12 @@
 namespace App\Nova\Filters;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Filters\DateFilter;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use App\Models\RentalModel;
-use Request;
-use function dd;
 
 class MaterialAvailDFrom extends DateFilter
 {
-    /**
-     * The rental ID to be used for filtering.
-     *
-     * @var int
-     */
-
-
-
-
-
     /**
      * Apply the filter to the given query.
      *
@@ -32,15 +20,16 @@ class MaterialAvailDFrom extends DateFilter
     public function apply(\Illuminate\Http\Request $request, $query, $value)
     {
         // Parse the 'from' date from the filter input and set it to the start of the day
-        $from = \Carbon\Carbon::parse($value)->startOfDay();
+        $from = Carbon::parse($value)->startOfDay();
 
-        // Apply the overlap logic, only considering rentals that interfere with the `from` date onwards
-        return $query->whereDoesntHave('rentals', function ($q) use ($from) {
-            $q->where(function ($q) use ($from) {
-                $q->where('from', '<=', $from)
-                    ->where('to', '>=', $from)
-                    ->orWhere('from', '>=', $from);
-            });
-        });
+        // Get the IDs of materials that are already reserved
+        $reservedMaterialIds = DB::table('Materials')
+            ->join('material_rental', 'Materials.id', '=', 'material_rental.material_id')
+            ->join('rentals', 'material_rental.rental_id', '=', 'rentals.id')
+            ->where('rentals.from', '>=', $from->startOfDay())
+            ->pluck('Materials.id');
+
+        // Apply the filter to exclude reserved materials
+        return $query->whereNotIn('id', $reservedMaterialIds);
     }
 }
