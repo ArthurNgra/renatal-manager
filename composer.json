@@ -13,6 +13,7 @@
         "barryvdh/laravel-dompdf": "^3.0",
         "coroowicaksono/chart-js-integration": "^0.4.3",
         "digital-creative/nova-mega-filter": "^1.0",
+        "idez/nova-date-range-filter": "^2.2",
         "kirschbaum-development/nova-chartjs": "^2.0",
         "laravel/framework": "^11.9",
         "laravel/nova": "^4.0",
@@ -24,7 +25,6 @@
             "type": "composer",
             "url": "https://nova.laravel.com"
         }
-
     ],
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",

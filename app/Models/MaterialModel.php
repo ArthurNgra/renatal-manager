@@ -55,6 +55,13 @@ class MaterialModel extends Model
             $query->where('to', '<', $date);
         });
     }
+    public function scopeAvailableOnDate($query, $date)
+    {
+        return $query->whereDoesntHave('rentals', function ($query) use ($date) {
+            $query->where('from', '<=', $date)
+                ->where('to', '>=', $date);
+        });
+    }
 
     protected function casts(): array
     {

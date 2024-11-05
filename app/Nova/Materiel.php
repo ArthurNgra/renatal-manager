@@ -3,9 +3,11 @@
 namespace App\Nova;
 
 use App\Models\MaterialModel;
+use App\Nova\Filters\materielDisponible;
 use App\Nova\Filters\MaterialAvailDFrom;
 use App\Nova\Filters\MaterialAvailTo;
 use App\Nova\Filters\MaterielType;
+use Archi\Test\Test;
 use DigitalCreative\MegaFilter\MegaFilter;
 use DigitalCreative\MegaFilter\MegaFilterTrait;
 use Illuminate\Http\Request;
@@ -61,10 +63,10 @@ class Materiel extends Resource
 
     public function filters(Request $request): array
     {
-        return [  MegaFilter::make([
+        return [
+            MegaFilter::make([
             new MaterielType,
-            new MaterialAvailDFrom(),
-            new MaterialAvailTo(),
+            new materielDisponible()
         ]),
         ];
     }
