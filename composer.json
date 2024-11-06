@@ -18,7 +18,8 @@
         "laravel/framework": "^11.9",
         "laravel/nova": "^4.0",
         "laravel/tinker": "^2.9",
-        "lexicon/nova-action-button-selectors": "^1.2"
+        "lexicon/nova-action-button-selectors": "^1.2",
+        "wdelfuego/nova-calendar": "^2.1"
     },
     "repositories": [
         {

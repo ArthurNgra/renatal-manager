@@ -29,6 +29,8 @@ use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Wdelfuego\NovaCalendar\NovaCalendar;
+use function __;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -45,6 +47,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::mainMenu(function () {
             return [
                 MenuSection::dashboard(Main::class),
+               MenuSection::make('Plannification',[
+                   MenuItem::link(__('Calendar'), NovaCalendar::pathToCalendar('my-calendar')),
+               ])->icon('calendar'),
                 MenuSection::make('Clients ', [
                     MenuItem::resource(Client::class)->name('Clients'),
                 ])->icon('user')->collapsable(),
@@ -81,7 +86,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-
+            new NovaCalendar('my-calendar'),
         ];
     }
 
