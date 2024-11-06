@@ -4,17 +4,15 @@ namespace App\Nova;
 
 use App\Models\MaterialModel;
 use App\Nova\Filters\MaterielDisponible;
-use App\Nova\Filters\MaterialAvailDFrom;
-use App\Nova\Filters\MaterialAvailTo;
 use App\Nova\Filters\MaterielType;
-use Archi\Test\Test;
+
 use DigitalCreative\MegaFilter\MegaFilter;
 use DigitalCreative\MegaFilter\MegaFilterTrait;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\HasOne;
+
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 

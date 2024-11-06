@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\InvoiceSpec;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ return new class extends Migration {
             $table->string('mail');
             $table->longText('address');
             $table->string('siret')->nullable();
+            $table->foreignIdFor(InvoiceSpec::class, 'invoice_spec_id')->nullable();
             $table->timestamps();
         });
     }

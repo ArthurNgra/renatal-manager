@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Error;
+use App\Services\DevisService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Str;
-use function substr;
+use function max;
 
 class Devis extends Model
 {
+
+
 
     protected static function boot()
     {
@@ -34,17 +35,21 @@ class Devis extends Model
         'final_amount'
     ];
 
-    public function client(){
+    public function client()
+    {
         return $this->rental->client;
     }
+
     public function rental(): BelongsTo
     {
-        return $this->belongsTo(RentalModel::class, 'rental_id')->with(['materials','client'],);
+        return $this->belongsTo(RentalModel::class, 'rental_id')->with(['materials', 'client']);
     }
 
-    public function factures(){
+    public function factures()
+    {
         return $this->hasMany(Facture::class);
     }
+
     public function prestations()
     {
         return $this->belongsToMany(Prestation::class, 'prestation_devis', 'devis_id', 'prestation_id');
@@ -65,7 +70,12 @@ class Devis extends Model
 
     public function getAmountAttribute(): float
     {
-        return $this->rental->materials->sum('price') + $this->prestations()->sum('price');
+        return (new DevisService($this))->getAmountAttribute();
+    }
+
+    public function getAmountTtcAttribute(): float
+    {
+        return  (new DevisService($this))->getAmountTtc();
     }
 
     public function getClient(): ClientModel
@@ -81,15 +91,12 @@ class Devis extends Model
 
     public function getFinalAmountAttribute(): float
     {
-        $total = $this->amount;
-        foreach ($this->reductions as $reduction) {
-            if ($reduction->type === '%') {
-                $total -= ($total*$reduction->valeur)/100;
-            } elseif ($reduction->type === '€') {
-                $total -= $reduction->valeur;
-            }
-        }
-        return max($total, 0);
+        return  (new DevisService($this))->getFinalAmountAttribute();
+    }
+
+    public function getFinalAmountTtcAttribute(): float
+    {
+        return (new DevisService($this))->getFinalAmountTtcAttribute();
     }
 
     public function hasReduction()

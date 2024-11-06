@@ -6,6 +6,7 @@ use App\Models\Devis as DevisModel;
 use App\Nova\Actions\EnvoyerDevis;
 use App\Nova\Metrics\DevisTotal;
 use App\Nova\Metrics\DevisTotalAprèsReduction;
+use App\Nova\Metrics\TotalTtc;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -58,6 +59,7 @@ class Devis extends Resource
         return [
             (new DevisTotal($request->resourceId))->onlyOnDetail(),
             (new DevisTotalAprèsReduction($request->resourceId))->onlyOnDetail(),
+           ( new TotalTtc($request->resourceId)),
         ];
     }
 

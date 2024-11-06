@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MaterialModel extends Model
 {
@@ -27,13 +26,15 @@ class MaterialModel extends Model
             $model->has_issue = 1;
         });
     }
+
     public function rentals(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(RentalModel::class,'material_rental','material_id','rental_id');
+        return $this->belongsToMany(RentalModel::class, 'material_rental', 'material_id', 'rental_id');
     }
+
     public function category()
     {
-        return $this->belongsTo(Category::class,'category_id','id',);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function scopeAvailableForDates($query, $from, $to)
@@ -49,18 +50,25 @@ class MaterialModel extends Model
             });
         });
     }
+
     public function scopeAvailableBeforeDate($query, $date)
     {
         return $query->whereDoesntHave('rentals', function ($query) use ($date) {
             $query->where('to', '<', $date);
         });
     }
+
     public function scopeAvailableOnDate($query, $date)
     {
         return $query->whereDoesntHave('rentals', function ($query) use ($date) {
             $query->where('from', '<=', $date)
                 ->where('to', '>=', $date);
         });
+    }
+
+    public function getPriceTtcAttribute(InvoiceSpec $invoiceSpec)
+    {
+        return $this->price * $invoiceSpec->tva;
     }
 
     protected function casts(): array

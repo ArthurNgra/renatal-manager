@@ -103,28 +103,18 @@ class Location extends Resource
             return $query; // Return the default query if no rental found
         }
 
-        // Define the start and end of the rental period
         $from = Carbon::parse($rental->from);
         $to = Carbon::parse($rental->to);
-
-        $q1 = DB::table("Materials")->select("*"); // Ajustez les colonnes si nécessaire
-
-
-        $q2 = DB::table("materials", "materials")
-            ->select("materials.id") // On sélectionne uniquement l'ID pour simplifier la sous-requête
-            ->join("material_rental", "materials.id", "=", "material_rental.material_id")
-            ->join("rentals", "material_rental.rental_id", "=", "rentals.id")
-
-            ->where("from", "<=", $from)
-            ->where("to", ">=",$to)
-            ->pluck("materials.id"); // Utilisez `pluck` pour obtenir une liste d'IDs seulement
-
-
-        $result = DB::table("Materials")
-            ->select("*")
-            ->whereNotIn("id", $q2) // Exclut les IDs de $q2
-            ->get();
-        return $result;
+       return $query->whereDoesntHave('rentals', function ($queryTime) use ($from, $to) {
+            $queryTime->where(function ($overlapQuery) use ($from, $to) {
+                $overlapQuery->whereBetween('from', [$from, $to])
+                    ->orWhereBetween('to', [$from, $to])
+                    ->orWhere(function ($query) use ($from, $to) {
+                        $query->where('from', '<=', $from)
+                            ->where('to', '>=', $to);
+                    });
+            });
+        });
     }
 
 }

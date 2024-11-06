@@ -6,6 +6,7 @@ namespace App\Providers;
 use Achi\CreateLocation\CreateLocation;
 use App\Models\MaterialModel;
 use App\Models\RentalModel;
+use App\Nova\CaracteristiqueFacture;
 use App\Nova\Client;
 use App\Nova\Company;
 use App\Nova\Dashboards\Main;
@@ -58,7 +59,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(Location::class)->name('Locations'),
                     MenuItem::resource(Devis::class)->name('Devis'),
                     MenuItem::resource(Reductions::class)->name('Reductions'),
-                MenuItem::resource(Facture::class)->name('Factures')
+                MenuItem::resource(Facture::class)->name('Factures'),
+                    MenuItem::resource(CaracteristiqueFacture::class)->name('TVA'),
                 ])->icon('scale'),
 
                 MenuSection::make(' Utilisateurs', [

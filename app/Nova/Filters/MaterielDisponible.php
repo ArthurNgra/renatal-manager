@@ -45,17 +45,6 @@ class MaterielDisponible extends Filter
 
     protected function configure(): void
     {
-        if (empty($this->config)) {
-            return;
-        }
-
-//    foreach ($this->config as $property => $value) {
-//        if (! in_array($property, Config::getProperties(), true)) {
-//            throw new InvalidArgumentException('Invalid property: ' . $property);
-//        }
-//
-//        $this->withMeta([$property => $value]);
-//    }
     }
 
     public function options(NovaRequest $request): array
