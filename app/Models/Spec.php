@@ -5,13 +5,13 @@ namespace App\Models;
 use App\Nova\Client;
 use Illuminate\Database\Eloquent\Model;
 
-class InvoiceSpec extends Model
+class Spec extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
+        'name',
         'tva',
-        'type',
     ];
 
     public function clients(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -59,7 +59,7 @@ class Devis extends Resource
         return [
             (new DevisTotal($request->resourceId))->onlyOnDetail(),
             (new DevisTotalAprèsReduction($request->resourceId))->onlyOnDetail(),
-           ( new TotalTtc($request->resourceId)),
+           ( new TotalTtc($request->resourceId))->onlyOnDetail(),
         ];
     }
 

@@ -19,6 +19,7 @@ use App\Nova\ElementDePackage;
 use App\Nova\Package;
 use App\Nova\Prestation;
 use App\Nova\Reductions;
+use App\Nova\DetailsFacturation;
 use App\Nova\Utilisateur;
 
 use App\Policies\ClientPolicy;
@@ -65,7 +66,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(Devis::class)->name('Devis'),
                     MenuItem::resource(Reductions::class)->name('Reductions'),
                 MenuItem::resource(Facture::class)->name('Factures'),
-                    MenuItem::resource(CaracteristiqueFacture::class)->name('TVA'),
+                    MenuItem::resource(DetailsFacturation::class)->name('TVA'),
                 ])->icon('scale'),
 
                 MenuSection::make(' Utilisateurs', [

@@ -59,7 +59,7 @@ class Client extends Resource
                 ->rules('nullable'),
             HasMany::make('Rentals', 'rentals', Location::class),
             HasMany::make('Factures', 'factures', Facture::class)->onlyOnDetail(),
-            BelongsTo::make('TVA', 'invoicespec', CaracteristiqueFacture::class)->rules('!required'),
+            BelongsTo::make('TVA', 'spec', DetailsFacturation::class),
         ];
     }
 

@@ -2,30 +2,40 @@
 
 namespace App\Services;
 
+use App\Models\ClientModel;
 use App\Models\Devis;
+use App\Models\InvoiceSpec;
+use App\Models\Spec;
+
 
 class DevisService
 {
 
 
-    protected  Devis $devis;
-    public function __construct( Devis $devis)
+    protected Devis $devis;
+
+    public function __construct(Devis $devis)
     {
-    $this->devis = $devis;
+        $this->devis = $devis;
     }
 
     public function getAmountAttribute(): float
     {
+
         return $this->devis->rental->materials->sum('price') + $this->devis->prestations()->sum('price');
     }
 
-    public function getAmountTtc(): float
+    public function getAmountTtc()
     {
-        $materials = $this->devis->rental->materials->sum(function($material){
-            $material->price * $this->devis->client()->invoicespec->tva;
-        });
+        return ($this->getTva()*$this->getAmountAttribute())/100+$this->getFinalAmountAttribute() ;
 
-        return 0;
+
+    }
+
+    public function getTva()
+    {
+        $client = ClientModel::where('id', $this->devis->rental->client->id)->first();
+        return $client->spec->tva;
     }
 
     public function getFinalAmountAttribute(): float

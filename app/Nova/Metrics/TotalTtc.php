@@ -10,7 +10,13 @@ use Laravel\Nova\Nova;
 
 class TotalTtc extends Value
 {
+    public $id;
+    public function __construct($id)
+    {
 
+        parent::__construct();
+        $this->id = $id;
+    }
     /**
      * Calculate the value of the metric.
      *
@@ -20,11 +26,11 @@ class TotalTtc extends Value
     public function calculate(NovaRequest $request)
 
     {
-        dd($request->resourceId);
+
         $devis= \App\Models\Devis::find($this->id);
 
-        $value=(new DevisService($devis))->getAmountAttribute();
-        return $this->result($value);
+        $value=(new DevisService($devis))->getAmountTtc();
+        return $this->result($value)->format('0.00');
     }
 
     /**

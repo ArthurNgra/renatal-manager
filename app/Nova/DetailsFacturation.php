@@ -2,21 +2,19 @@
 
 namespace App\Nova;
 
-use App\Models\InvoiceSpec;
+use App\Models\Spec;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 
-class CaracteristiqueFacture extends Resource
+class DetailsFacturation extends Resource
 {
-    public static $model = InvoiceSpec::class;
+    public static $model = Spec::class;
 
-    public static $title = 'type';
+    public static $title = 'name';
 
     public static $search = [
-        'id', 'tva', 'type'
+        'id', 'name', 'tva'
     ];
 
     public function fields(Request $request): array
@@ -24,15 +22,13 @@ class CaracteristiqueFacture extends Resource
         return [
             ID::make()->sortable(),
 
+            Text::make('Name')
+                ->sortable()
+                ->rules('required'),
+
             Text::make('Tva')
                 ->sortable()
                 ->rules('required'),
-
-            Text::make('Type')
-                ->sortable()
-                ->rules('required'),
-
-            HasMany::make('clients')
         ];
     }
 

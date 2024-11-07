@@ -17,6 +17,7 @@ class ClientModel extends Model
         'mail',
         'address',
         'siret',
+
     ];
 
     protected static function boot()
@@ -39,8 +40,13 @@ class ClientModel extends Model
         return $this->hasMany(Facture::class, 'client_id');
     }
 
-    public function invoicespec(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function spec(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(InvoiceSpec::class);
+        return $this->belongsTo(Spec::class);
+    }
+
+    public function getClientTvaAttribute()
+    {
+        return $this->invoicespec->tva;
     }
 }
