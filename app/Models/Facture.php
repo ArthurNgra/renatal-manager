@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Nova\Client;
 use Error;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,11 @@ class Facture extends Model
     public function devisClient()
     {
         return $this->hasMany(Devis::class, 'client_id', 'client_id');
+    }
+
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
     }
     public static function boot() {
         parent::boot();
@@ -49,6 +55,10 @@ class Facture extends Model
         'due_date' => 'date',
     ];
 
+    public function getClientAttribute()
+    {
+        return ClientModel::find($this->client_id);
+    }
     public function getTotal():float
     {
 
