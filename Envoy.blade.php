@@ -17,6 +17,10 @@ git pull
 cd {{ $folder }}
 composer install --optimize-autoloader
 php artisan cache:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
 @endtask
 
 @task('update', ['on' => 'remote'])
