@@ -28,3 +28,9 @@ cd {{ $folder }}
 composer update
 
 @endtask
+
+@task('cmd', ['on' => 'remote'])
+cd {{ $folder }}
+php artisan invoice-due
+
+@endtask
