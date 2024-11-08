@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Nova\Client;
+use App\Services\InvoiceService;
 use Error;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,8 @@ class Facture extends Model
 {
 
     protected $keyType = 'string';
+
+
 
     public function devis(): BelongsTo
     {
@@ -57,131 +60,37 @@ class Facture extends Model
 
     public function getClientAttribute()
     {
-        return ClientModel::find($this->client_id);
+        return (new  InvoiceService($this))->getClientAttribute($this);
     }
     public function getTotal():float
     {
-
-        return $this->devis->getAmountAttribute();
+        return (new  InvoiceService($this))->getTotal();
     }
 
     public function getTotalWithReduction():float
     {
-        return $this->devis->getFinalAmountAttribute();
+        return (new  InvoiceService($this))->getTotalWithReduction();
     }
 
     public static function getTotalLast12MonthsWithoutReduction(): float
     {
-
-
-        // Obtenir la date actuelle
-        $startOfMonth = now()->endOfMonth();
-        $endOfMonth = now()->copy()->subMonths(12)->startOfMonth();
-
-        // Récupérer les factures du mois en cours
-        $factures = Facture::all()->filter(function ($fact) use ($startOfMonth, $endOfMonth) {
-            return $fact->whereDate('due_date', '>=', $startOfMonth)
-                ->whereDate('due_date', '<=', $endOfMonth);
-        });
-
-        // Calculer la somme des totaux sans réduction
-        $total = 0;
-        foreach ($factures as $facture) {
-                if ($facture->status == 'Payé') {
-                $total += $facture->getTotal();
-                }
-        }
-
-        return $total;
+        return InvoiceService::getTotalLast12MonthsWithoutReduction();
     }
     public static function getTotalLast12MonthsWithReduction(): float
     {
-        $startOfMonth = now()->endOfMonth();
-        $endOfMonth = now()->copy()->subMonths(12)->startOfMonth();
-
-
-        $factures = Facture::all()->filter(function ($fact) use ($startOfMonth, $endOfMonth) {
-            return $fact->whereDate('due_date', '>=', $startOfMonth)
-                ->whereDate('due_date', '<=', $endOfMonth);
-        });
-        // Calculer la somme des totaux avec réduction
-        $total = 0;
-        foreach ($factures as $facture) {
-            if( $facture->status == 'Payé') {
-                $total += $facture->getTotalWithReduction();
-            }// Utilisation de la méthode getTotalWithReduction()
-        }
-
-        return $total;
+        return InvoiceService::getTotalLast12MonthsWithReduction();
     }
     public static function getMonthlyTotalWithoutReduction(): array
     {
-        // Initialiser le tableau pour stocker les totaux mensuels
-        $monthlyTotals = [];
-
-        // Obtenir la date actuelle
-        $now = now();
-
-        // Boucler sur les 12 derniers mois
-        for ($i = 0; $i < 12; $i++) {
-            // Déterminer le premier et dernier jour du mois
-            $startOfMonth = $now->copy()->subMonths($i)->startOfMonth();
-            $endOfMonth = $now->copy()->subMonths($i)->endOfMonth();
-
-            // Récupérer les factures du mois en cours
-            $factures = self::whereBetween('due_date', [$startOfMonth, $endOfMonth])->get();
-
-            // Calculer la somme des totaux sans réduction pour ce mois
-            $total = 0;
-            foreach ($factures as $facture) {
-                if( $facture->status == 'Payé') {
-                    $total += $facture->getTotal();
-                } // Utilisation de la méthode getTotal()
-            }
-
-            // Ajouter le total dans le tableau avec le mois
-            $monthlyTotals[$startOfMonth->format('Y-m')] = $total;
-        }
-
-        return $monthlyTotals;
+        return InvoiceService::getMonthlyTotalWithoutReduction();
     }
     public static function getMonthlyTotalWithReduction(): array
     {
-        // Initialiser le tableau pour stocker les totaux mensuels
-        $monthlyTotals = [];
-
-        // Obtenir la date actuelle
-        $now = now();
-
-        // Boucler sur les 12 derniers mois
-        for ($i = 0; $i < 12; $i++) {
-            // Déterminer le premier et dernier jour du mois
-            $startOfMonth = $now->copy()->subMonths($i)->startOfMonth();
-            $endOfMonth = $now->copy()->subMonths($i)->endOfMonth();
-
-
-            // Récupérer les factures du mois en cours
-            $factures = self::whereBetween('due_date', [$startOfMonth, $endOfMonth])
-                ->get();
-
-            // Calculer la somme des totaux avec réduction pour ce mois
-            $total = 0;
-            foreach ($factures as $facture) {
-                if( $facture->status == 'Payé') {
-                    $total += $facture->getTotalWithReduction();
-                } // Utilisation de la méthode getTotalWithReduction()
-            }
-
-            // Ajouter le total dans le tableau avec le mois
-            $monthlyTotals[$startOfMonth->format('Y-m')] = $total;
-        }
-
-        return $monthlyTotals;
+        return InvoiceService::getMonthlyTotalWithReduction();
     }
     public static function getYearlyDiscount()
     {
-
-        return Facture::getTotalLast12MonthsWithoutReduction()-(Facture::getTotalLast12MonthsWithReduction());
+        return InvoiceService::getYearlyDiscount();
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Nova\Actions;
 
+use App\Services\InvoiceService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -24,7 +25,9 @@ class ValiderFacture extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-        //
+        foreach ($models as $model) {
+            (new InvoiceService($model))->updateStatus('P');
+        }
     }
 
     /**
