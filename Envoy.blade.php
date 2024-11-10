@@ -15,28 +15,20 @@ git pull
 
 @task('artisan', ['on' => 'remote'])
 cd {{ $folder }}
-composer install --optimize-autoloader
-php artisan cache:clear
-<<<<<<< HEAD
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-
-=======
->>>>>>> a6533aa (add invoice command)
+php-8.2 artisan config:cache
+php-8.2 artisan route:cache
+php-8.2 artisan view:cache
 @endtask
 
 @task('update', ['on' => 'remote'])
 cd {{ $folder }}
 composer update
-
 @endtask
-<<<<<<< HEAD
+
 
 @task('cmd', ['on' => 'remote'])
 cd {{ $folder }}
 php artisan invoice-due
 
 @endtask
-=======
->>>>>>> a6533aa (add invoice command)
+
