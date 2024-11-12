@@ -19,6 +19,9 @@
         "laravel/nova": "^4.0",
         "laravel/tinker": "^2.9",
         "lexicon/nova-action-button-selectors": "^1.2",
+        "livewire/livewire": "^3.5",
+        "livewire/volt": "^1.6",
+        "robsontenorio/mary": "^1.41",
         "wdelfuego/nova-calendar": "^2.1"
     },
     "repositories": [
