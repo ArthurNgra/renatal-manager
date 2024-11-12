@@ -16,7 +16,7 @@
 <main class="flex-grow">
     {{ $slot }}
 </main>
-
+<livewire:Components.footer></livewire:Components.footer>
 
 
 <!-- Toast notifications -->
