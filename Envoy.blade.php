@@ -15,14 +15,19 @@ git pull
 
 @task('artisan', ['on' => 'remote'])
 cd {{ $folder }}
+composer_php8.2  install --optimize-autoloader --no-dev
+php-8.2 artisan cache:clear
+
 php-8.2 artisan config:cache
 php-8.2 artisan route:cache
 php-8.2 artisan view:cache
+
 @endtask
 
 @task('update', ['on' => 'remote'])
 cd {{ $folder }}
 composer update
+
 @endtask
 
 
