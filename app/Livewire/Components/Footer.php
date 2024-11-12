@@ -8,6 +8,6 @@ class Footer extends Component
 {
     public function render(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
     {
-        return view('livewire.components.footer');
+        return view('livewire.Components.footer');
     }
 }

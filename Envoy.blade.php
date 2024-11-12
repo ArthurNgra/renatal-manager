@@ -10,7 +10,7 @@ echo "testing...";
 
 @task('pull', ['on' => 'remote'])
 cd {{ $folder }}
-git pull -b main
+git pull
 @endtask
 
 @task('artisan', ['on' => 'remote'])
