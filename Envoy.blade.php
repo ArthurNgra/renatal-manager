@@ -10,6 +10,7 @@ echo "testing...";
 
 @task('pull', ['on' => 'remote'])
 cd {{ $folder }}
+git stash
 git pull
 @endtask
 
@@ -26,7 +27,7 @@ php-8.2 artisan view:cache
 
 @task('update', ['on' => 'remote'])
 cd {{ $folder }}
-composer update
+composer_php8.2  update
 
 @endtask
 
@@ -34,6 +35,10 @@ composer update
 @task('cmd', ['on' => 'remote'])
 cd {{ $folder }}
 php artisan invoice-due
-
 @endtask
 
+@story('deploy')
+ pull
+ update
+ artisan
+@endstory
