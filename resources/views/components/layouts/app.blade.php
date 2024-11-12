@@ -17,8 +17,7 @@
     {{ $slot }}
 </main>
 
-<!-- Footer -->
-<livewire:Components.footer></livewire:Components.footer>
+
 
 <!-- Toast notifications -->
 <x-toast/>
