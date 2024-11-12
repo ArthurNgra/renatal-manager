@@ -1,0 +1,85 @@
+{
+  "public/fonts/Omnes Black Italic.woff": {
+    "file": "assets/Omnes Black Italic-C2uFhO4t.woff",
+    "src": "public/fonts/Omnes Black Italic.woff"
+  },
+  "public/fonts/Omnes Black.woff": {
+    "file": "assets/Omnes Black-D9q7dvTJ.woff",
+    "src": "public/fonts/Omnes Black.woff"
+  },
+  "public/fonts/Omnes Bold Italic.woff": {
+    "file": "assets/Omnes Bold Italic-CDUTsp-x.woff",
+    "src": "public/fonts/Omnes Bold Italic.woff"
+  },
+  "public/fonts/Omnes Bold.woff": {
+    "file": "assets/Omnes Bold-B1DI3g-2.woff",
+    "src": "public/fonts/Omnes Bold.woff"
+  },
+  "public/fonts/Omnes ExtraLight Italic.woff": {
+    "file": "assets/Omnes ExtraLight Italic-DhDkV9Bs.woff",
+    "src": "public/fonts/Omnes ExtraLight Italic.woff"
+  },
+  "public/fonts/Omnes ExtraLight.woff": {
+    "file": "assets/Omnes ExtraLight-M_m4pSmd.woff",
+    "src": "public/fonts/Omnes ExtraLight.woff"
+  },
+  "public/fonts/Omnes Hairline Italic.woff": {
+    "file": "assets/Omnes Hairline Italic-CNxgQ_Al.woff",
+    "src": "public/fonts/Omnes Hairline Italic.woff"
+  },
+  "public/fonts/Omnes Hairline.woff": {
+    "file": "assets/Omnes Hairline-DoXnfDsm.woff",
+    "src": "public/fonts/Omnes Hairline.woff"
+  },
+  "public/fonts/Omnes Italic.woff": {
+    "file": "assets/Omnes Italic-Bj1wKYBe.woff",
+    "src": "public/fonts/Omnes Italic.woff"
+  },
+  "public/fonts/Omnes Light Italic.woff": {
+    "file": "assets/Omnes Light Italic-CpEyprhV.woff",
+    "src": "public/fonts/Omnes Light Italic.woff"
+  },
+  "public/fonts/Omnes Light.woff": {
+    "file": "assets/Omnes Light-BJU6-maG.woff",
+    "src": "public/fonts/Omnes Light.woff"
+  },
+  "public/fonts/Omnes Medium Italic.woff": {
+    "file": "assets/Omnes Medium Italic-qYyO-N_Q.woff",
+    "src": "public/fonts/Omnes Medium Italic.woff"
+  },
+  "public/fonts/Omnes Medium.woff": {
+    "file": "assets/Omnes Medium-DyVTZxdS.woff",
+    "src": "public/fonts/Omnes Medium.woff"
+  },
+  "public/fonts/Omnes Regular.woff": {
+    "file": "assets/Omnes Regular-BS1Kh0Rt.woff",
+    "src": "public/fonts/Omnes Regular.woff"
+  },
+  "public/fonts/Omnes SemiBold Italic.woff": {
+    "file": "assets/Omnes SemiBold Italic-C_X1bq9U.woff",
+    "src": "public/fonts/Omnes SemiBold Italic.woff"
+  },
+  "public/fonts/Omnes SemiBold.woff": {
+    "file": "assets/Omnes SemiBold-BAK1L2HB.woff",
+    "src": "public/fonts/Omnes SemiBold.woff"
+  },
+  "public/fonts/Omnes Thin Italic.woff": {
+    "file": "assets/Omnes Thin Italic-CXtVxYYz.woff",
+    "src": "public/fonts/Omnes Thin Italic.woff"
+  },
+  "public/fonts/Omnes Thin.woff": {
+    "file": "assets/Omnes Thin-D6z-CRe8.woff",
+    "src": "public/fonts/Omnes Thin.woff"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CpwbjkAq.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-z-Rg4TxU.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
