@@ -29,6 +29,6 @@ class Card extends Component
 
     public function render()
     {
-        return view('livewire.components.card');
+        return view('livewire.Components.card');
     }
 }
