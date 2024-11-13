@@ -1,4 +1,4 @@
-INSERT INTO categories (id, name) VALUES (1, 'Matériel DJ');
+INSERT INTO categories (id, name) VALUES (1, 'MatérielDJ');
 INSERT INTO categories (id, name) VALUES (2, 'Boules à Facette');
 INSERT INTO categories (id, name) VALUES (3, 'Lights');
 INSERT INTO categories (id, name) VALUES (4, 'Sonorisation');

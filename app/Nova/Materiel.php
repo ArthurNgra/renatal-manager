@@ -6,13 +6,14 @@ use App\Models\MaterialModel;
 use App\Nova\Filters\MaterielDisponible;
 use App\Nova\Filters\MaterielType;
 
+use Datomatic\NovaMarkdownTui\MarkdownTui;
 use DigitalCreative\MegaFilter\MegaFilter;
 use DigitalCreative\MegaFilter\MegaFilterTrait;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
-use Datomatic\NovaMarkdownTui\MarkdownTui;
+
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
@@ -43,7 +44,15 @@ class Materiel extends Resource
             Text::make('Modèle', 'model')
                 ->sortable()
                 ->rules('required'),
-            Image::make('Image', 'image'),
+            Image::make('Image', 'image')
+                ->disk('public')
+                ->path('materiels') // Optionnel : sous-dossier pour organiser les images
+                ->storeAs(function (Request $request) {
+                    return $request->file('image')->getClientOriginalName(); // Utilise le nom d'origine
+                })
+                ->thumbnail(function ($value) {
+                    return $this->image; // URL pour les miniatures
+                }),
             MarkdownTui::make('Specs')
                 ->sortable()
                 ->rules('nullable'),

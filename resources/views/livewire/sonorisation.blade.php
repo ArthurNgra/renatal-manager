@@ -1,4 +1,11 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-    sono
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+        @foreach($sonos as $sono)
+            <livewire:components.card
+                :material="$sono"
+                :cat="$cat"
+            />
+        @endforeach
+    </div>
 </div>
