@@ -17,6 +17,7 @@ class MaterialModel extends Model
         'specs',
         'serial',
         'has_issue',
+        'image'
     ];
 
     protected static function boot()
