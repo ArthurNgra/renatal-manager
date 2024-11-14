@@ -1,9 +1,11 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="bg-white shadow-lg rounded-lg p-6">
-        <div class="flex flex-col lg:flex-row">
+        <div class="flex flex-row lg:flex-row lg:items-start">
+            <!-- Image à gauche -->
             <div class="lg:w-1/3">
-                <img src="{{ $url ?? 'https://via.placeholder.com/300' }}" alt="{{ $material->model }}" class="w-full h-auto rounded-md">
+                <img src="{{ $url ?? 'https://via.placeholder.com/300' }}" alt="{{ $material->model }}" class="w-1/3 h-auto rounded-md">
             </div>
+            <!-- Contenu à droite -->
             <div class="lg:w-2/3 lg:pl-8 mt-4 lg:mt-0">
                 <h1 class="text-2xl font-bold text-gray-800">{{ $material->brand }} - {{ $material->model }}</h1>
                 <p class="text-gray-600 mt-2">{{ $material->specs ?? 'Aucune spécification disponible.' }}</p>
@@ -34,4 +36,3 @@
         </div>
     </div>
 </div>
-
