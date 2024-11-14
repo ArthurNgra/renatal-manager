@@ -6,8 +6,8 @@
             </a>
         </div>
 
-        <div class="flex sm:flex-col  lg:flex-row lg:items-start lg:justify-start">
-            <!-- Image à gauche (ou en haut sur mobile) -->
+        <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row lg:items-start lg:justify-start">
+        <!-- Image à gauche (ou en haut sur mobile) -->
             <div class="lg:w-1/3 flex lg:justify-start mb-4 lg:mb-0">
                 <img src="{{ $url }}" alt="{{ $material->model }}" class="w-2/3 sm:w-1/2 lg:w-full h-auto rounded-md">
             </div>
