@@ -6,10 +6,10 @@
             <h3 class="text-lg font-omnesBold mb-4">Plan du site</h3>
             <ul class="space-y-2 font-omnes">
                 <li><a href="/" class="hover:underline">Home</a></li>
-                <li><a href="/dj" class="hover:underline">DJ</a></li>
-                <li><a href="/sono" class="hover:underline">Sonorisation</a></li>
+                <li><a href="/matérieldj" class="hover:underline">DJ</a></li>
+                <li><a href="/sonorisation" class="hover:underline">Sonorisation</a></li>
                 <li><a href="/lights" class="hover:underline">Light</a></li>
-                <li><a href="/deco" class="hover:underline">Décoration</a></li>
+                <li><a href="/décoration" class="hover:underline">Décoration</a></li>
                 <li><a href="/technique" class="hover:underline">Technique</a></li>
             </ul>
         </div>
