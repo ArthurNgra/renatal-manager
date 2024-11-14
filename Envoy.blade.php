@@ -19,7 +19,7 @@ cd {{ $folder }}
 git stash
 git pull
 composer_php8.2  install --optimize-autoloader --no-dev
-composer_php8.2 fund
+
 php-8.2 artisan cache:clear
 
 php-8.2 artisan config:cache

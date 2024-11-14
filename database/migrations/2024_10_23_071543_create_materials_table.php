@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('model');
             $table->longText('specs')->nullable();
             $table->string('serial');
+            $table->string('image')->nullable();
             $table->boolean('has_issue')->nullable();
             $table->float('price')->nullable();
             $table->foreignIdFor(Category::class);
