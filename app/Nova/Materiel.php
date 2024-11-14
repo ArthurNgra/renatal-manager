@@ -10,6 +10,7 @@ use Datomatic\NovaMarkdownTui\MarkdownTui;
 use DigitalCreative\MegaFilter\MegaFilter;
 use DigitalCreative\MegaFilter\MegaFilterTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -51,6 +52,9 @@ class Materiel extends Resource
                     return $request->file('image')->getClientOriginalName(); // Utilise le nom d'origine
                 })
                 ->thumbnail(function ($value) {
+                    if(Storage::url($this->image)) {
+                        return Storage::url($this->image);
+                    }
                     return $this->image; // URL pour les miniatures
                 }),
             MarkdownTui::make('Specs')
