@@ -15,7 +15,7 @@ class Details extends Component
     public function mount($id)
     {
         $this->material = MaterialModel::find($id);
-        $this->url=config('app.url').$this->material->image;
+        $this->url=config('app.url').'/storage/'. $this->material->image;
     }
 
 
