@@ -2,7 +2,7 @@
     <div class="bg-white shadow-lg rounded-lg p-6">
         <div class="flex flex-col lg:flex-row">
             <div class="lg:w-1/3">
-                <img src="{{ $material->image ?? 'https://via.placeholder.com/300' }}" alt="{{ $material->model }}" class="w-full h-auto rounded-md">
+                <img src="{{ Storage::url($material->image) ?? 'https://via.placeholder.com/300' }}" alt="{{ $material->model }}" class="w-full h-auto rounded-md">
             </div>
             <div class="lg:w-2/3 lg:pl-8 mt-4 lg:mt-0">
                 <h1 class="text-2xl font-bold text-gray-800">{{ $material->brand }} - {{ $material->model }}</h1>
