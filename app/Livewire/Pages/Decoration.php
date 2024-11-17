@@ -14,7 +14,7 @@ class Decoration extends Component
     public function __construct()
     {
         $this->cat = Category::where('name', 'Décoration')->first();
-        $this->decos = MaterialModel::where('category_id', $this->cat->id)->groupBy('model')->get();
+        $this->decos = MaterialModel::where('category_id', $this->cat->id)->distinct('model')->get();
 
     }
     public function render()
