@@ -14,7 +14,7 @@ class Sonorisation extends Component
     public function __construct()
     {
         $this->cat = Category::where('name', 'Sonorisation')->first();
-        $this->sonos = MaterialModel::where('category_id', $this->cat->id)->get();
+        $this->sonos = MaterialModel::where('category_id', $this->cat->id)->groupBy('model')->get();
 
     }
     public function render()
