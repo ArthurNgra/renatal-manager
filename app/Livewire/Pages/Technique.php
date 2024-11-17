@@ -14,7 +14,7 @@ class Technique extends Component
     public function __construct()
     {
         $this->cat = Category::where('name', 'Technique')->first();
-        $this->techs = MaterialModel::where('category_id', $this->cat->id)->get();
+        $this->techs = MaterialModel::where('category_id', $this->cat->id)->groupBy('model')->get();
 
     }
     public function render()
