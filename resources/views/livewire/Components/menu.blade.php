@@ -27,7 +27,7 @@
                     <a href="/technique" wire:navigate class="px-3 py-2 rounded-md text-sm font-medium font-omnesBold {{ $activeMenu === 'technique' ? 'border-grey-900 border-b-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
                         Technique
                     </a>
-                    <a href="/contact" wire:navigate class="px-3 py-2 rounded-md text-sm font-medium font-omnesBold {{ $activeMenu === 'technique' ? 'border-grey-900 border-b-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
+                    <a href="/contact" wire:navigate class="px-3 py-2 rounded-md text-sm font-medium font-omnesBold {{ $activeMenu === 'contact' ? 'border-grey-900 border-b-2' : '' }}" wire:click.prevent="setActiveMenu('contact)">
                         Contact
                     </a>
                 </div>
@@ -51,25 +51,25 @@
         <!-- Mobile menu -->
         <div id="mobileMenu" class="hidden border-l-2 border-gray-300 fixed left-0 top-0 h-full w-2/4 bg-white">
             <div class="mt-5 px-6">
-                <a href="/" wire:navigate.prefetch class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === '/' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('/')">
+                <a href="/" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === '/' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('/')">
                     Home
                 </a>
-                <a href="/matérieldj" wire:navigate.prefetch class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'dj' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('dj')">
+                <a href="/matérieldj" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'dj' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('dj')">
                     DJ
                 </a>
-                <a href="/sonorisation" wire:navigate.prefetch class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'sono' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('sono')">
+                <a href="/sonorisation" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'sono' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('sono')">
                     Sonorisation
                 </a>
-                <a href="/lights" wire:navigate.prefetch class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'lights' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('lights')">
+                <a href="/lights" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'lights' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('lights')">
                     Light
                 </a>
-                <a href="/décoration" wire:navigate.prefetch class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'deco' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('deco')">
+                <a href="/décoration" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'deco' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('deco')">
                     Décoration
                 </a>
-                <a href="/technique" wire:navigat.prefetche class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'technique' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
+                <a href="/technique" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'technique' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
                     Technique
                 </a>
-                <a href="/contact" wire:navigat.prefetche class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'technique' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
+                <a href="/contact" wire:navigate class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'contact' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('contact')">
                    Contact
                 </a>
             </div>
