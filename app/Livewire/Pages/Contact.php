@@ -45,7 +45,7 @@ class Contact extends Component
             ], function ($mail) {
                 $mail->to($this->email)
                     ->subject('Demande de contact')
-                    ->from(config('mail.from.address'), config('mail.from.name'));
+                    ->from(config('mail.mailers.smtp.username'), config('mail.from'));
             });
 
             (new ContactService())->create($validated);
