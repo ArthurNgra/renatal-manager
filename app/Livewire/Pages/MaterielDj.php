@@ -14,7 +14,7 @@ class MaterielDj extends Component
     public function __construct()
     {
         $this->cat = Category::where('name', 'MatérielDJ')->first();
-        $this->djs = MaterialModel::where('category_id', $this->cat->id)->distinct('model')->get();
+        $this->djs = MaterialModel::where('category_id', $this->cat->id)->get()->unique('model');
 
     }
     public function render()
