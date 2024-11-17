@@ -11,6 +11,7 @@
                 <li><a href="/lights" class="hover:underline">Light</a></li>
                 <li><a href="/décoration" class="hover:underline">Décoration</a></li>
                 <li><a href="/technique" class="hover:underline">Technique</a></li>
+                <li><a href="/contact" class="hover:underline">Technique</a></li>
             </ul>
         </div>
 
