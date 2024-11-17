@@ -10,6 +10,7 @@ use App\Nova\CaracteristiqueFacture;
 use App\Nova\Category;
 use App\Nova\Client;
 use App\Nova\Company;
+use App\Nova\Contact;
 use App\Nova\Dashboards\Main;
 use App\Nova\Devis;
 
@@ -54,6 +55,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                ])->icon('calendar'),
                 MenuSection::make('Clients ', [
                     MenuItem::resource(Client::class)->name('Clients'),
+                    MenuItem::resource(Contact::class)->name('Demande de contact'),
                 ])->icon('user')->collapsable(),
 
                 MenuSection::make('Materiels', [

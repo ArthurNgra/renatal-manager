@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Pages\Contact;
 use App\Livewire\Pages\Decoration;
 use App\Livewire\Pages\Details;
 use App\Livewire\Pages\Home;
@@ -18,3 +19,4 @@ Route::get('/décoration', Decoration::class)->name('decoration');
 Route::get('/{any}/{id}/details', Details::class)
     ->where('any', '.*')  // Wildcard pour capturer n'importe quel chemin avant "details"
     ->name('detail');
+Route::get('/contact',Contact::class)->name('contact');

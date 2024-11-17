@@ -27,6 +27,9 @@
                     <a href="/technique" wire:navigate class="px-3 py-2 rounded-md text-sm font-medium font-omnesBold {{ $activeMenu === 'technique' ? 'border-grey-900 border-b-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
                         Technique
                     </a>
+                    <a href="/contact" wire:navigate class="px-3 py-2 rounded-md text-sm font-medium font-omnesBold {{ $activeMenu === 'technique' ? 'border-grey-900 border-b-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
+                        Contact
+                    </a>
                 </div>
             </div>
 
@@ -65,6 +68,9 @@
                 </a>
                 <a href="/technique" wire:navigat.prefetche class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'technique' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
                     Technique
+                </a>
+                <a href="/contact" wire:navigat.prefetche class="block mb-4 text-sm font-omnes text-gray-700 hover:bg-gray-100 {{ $activeMenu === 'technique' ? 'border-l-4 border-gray-800 pl-2' : '' }}" wire:click.prevent="setActiveMenu('technique')">
+                   Contact
                 </a>
             </div>
         </div>
