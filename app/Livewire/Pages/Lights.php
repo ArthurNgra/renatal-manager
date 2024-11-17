@@ -14,7 +14,7 @@ class Lights extends Component
     public function __construct()
     {
         $this->cat = Category::where('name', 'Lights')->first();
-        $this->lights = MaterialModel::where('category_id', $this->cat->id)->groupBy('model')->get();
+        $this->lights = MaterialModel::where('category_id', $this->cat->id)->distinct('model')->get();
     }
 
 
