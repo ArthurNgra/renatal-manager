@@ -31,7 +31,7 @@ class Contact extends Component
             return;
         }
 
-        RateLimiterFacade::hit($key, 400); // 60 secondes (1 minute)
+        RateLimiterFacade::hit($key, 120); // 60 secondes (1 minute)
 
         $validated = $this->validate();
 
