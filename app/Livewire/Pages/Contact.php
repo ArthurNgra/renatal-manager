@@ -36,23 +36,33 @@ class Contact extends Component
 
         $validated = $this->validate();
 
-        // Logique d'envoi de mail
-        Mail::send('emails.contact', [
-            'name' => $this->name,
-            'email' => $this->email,
-            'messageContent' => $this->message,
-        ], function ($mail) {
-            $mail->to($this->email)
-                ->subject('Demande de contact')
-                ->from(config('mail.mailers.smtp.username'), config('mail.from.name'));
+        try {
+            // Logique d'envoi de mail
+            Mail::send('emails.contact', [
+                'name' => $this->name,
+                'email' => $this->email,
+                'messageContent' => $this->message,
+            ], function ($mail) {
+                $mail->to($this->email)
+                    ->subject('Demande de contact')
+                    ->from(config('mail.mailers.smtp.username'), config('mail.from.name'));
 
-        });
+            });
 
-
-        (new ContactService())->create($validated);
-        session()->flash('success', 'Votre message a bien été transmis');
-        $this->reset();
+            (new ContactService())->create($validated);
+            session()->flash('success', 'Votre message a bien été transmis');
+            $this->reset();
+        } catch (\Symfony\Component\Mailer\Exception\TransportExceptionInterface $e) {
+            if (strpos($e->getMessage(), '554') !== false) {
+                session()->flash('error', 'Impossible d\'envoyer le message. Veuillez vérifier votre adresse email ou réessayer plus tard.');
+            } else {
+                session()->flash('error', 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.');
+            }
+        } catch (\Throwable $e) {
+            session()->flash('error', 'Une erreur inattendue est survenue. Veuillez réessayer plus tard.');
+        }
     }
+
 
     public function render()
     {
