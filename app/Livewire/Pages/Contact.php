@@ -41,7 +41,7 @@ class Contact extends Component
             'email' => $this->email,
             'messageContent' => $this->message,
         ], function ($mail) {
-            $mail->to('contact@example.com')
+            $mail->to($this->email)
                 ->subject('Demande de contact')
                 ->from($this->email, $this->name);
         });
