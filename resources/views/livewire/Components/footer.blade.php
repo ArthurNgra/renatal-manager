@@ -11,7 +11,7 @@
                 <li><a href="/lights" class="hover:underline">Light</a></li>
                 <li><a href="/décoration" class="hover:underline">Décoration</a></li>
                 <li><a href="/technique" class="hover:underline">Technique</a></li>
-                <li><a href="/contact" class="hover:underline">Technique</a></li>
+                <li><a href="/contact" class="hover:underline">Contaxt</a></li>
             </ul>
         </div>
 
@@ -34,13 +34,7 @@
 
         <!-- Section: Newsletter -->
         <div>
-            <h3 class="text-lg font-omnesBold mb-4">Newsletter</h3>
-            <form wire:submit.prevent="subscribe">
-                <div class="flex flex-col space-y-2 font-omnes">
-                    <input type="email" wire:model="email" class="p-2 bg-gray-700 text-white rounded" placeholder="Votre email">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">S'inscrire</button>
-                </div>
-            </form>
+            <script type="text/javascript" class="w-auto" src="https://webform.statslive.info/ow/eyJpdiI6Im1vdTNnZ1pZXC9rWU95NVdDXC9uUEhXdDJTNmxuMFpSQ0FOR2FxbXVOZHlTTT0iLCJtYWMiOiIwMGI2MDYyZDMxNzZlZDczMWEwMTBiYTFhY2U2Yjg0MjZmMzRjZGQ4Y2Q4MGQ5YWZkNmNjMDI5NDNhMmU2YmY2IiwidmFsdWUiOiJMSzA2NEhwdmh5UHdvU01XNnRUVzJFdDFaVUg4MEJMdHM5SDlSUEFOWTVjPSJ9"></script>
         </div>
     </div>
 
