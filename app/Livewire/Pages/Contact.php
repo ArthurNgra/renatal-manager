@@ -27,7 +27,7 @@ class Contact extends Component
     {
         $key = 'contact-form:' . request()->ip();
 
-        if (RateLimiterFacade::tooManyAttempts($key, 1)) {
+        if (RateLimiterFacade::tooManyAttempts($key, 3)) {
             session()->flash('error', 'Trop de tentatives dans les dernières minutes. Veuillez réessayer plus tard.');
             return;
         }
@@ -53,7 +53,7 @@ class Contact extends Component
             session()->flash('success', 'Votre message a bien été transmis');
             $this->reset();
         } catch (\Symfony\Component\Mailer\Exception\TransportExceptionInterface $e) {
-            if (strpos($e->getMessage(), '554') !== false) {
+            if (str_contains($e->getMessage(), '554')) {
                 session()->flash('error', 'Impossible d\'envoyer le message. Veuillez vérifier votre adresse email ou réessayer plus tard.');
             } else {
                 session()->flash('error', 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.');
